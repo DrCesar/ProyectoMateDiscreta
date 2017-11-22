@@ -11,18 +11,21 @@ def AgregarDiv(a):
         div.append(b)
 
 
-def Divisores(n,k,i=0,a=[]):
+def Divisores(n,k=0,i=0,a=[]):
+    if (k == 0):
+        k = n
+
+    if (i == 0):
+        a = [1] * k
+    a[i] = 0
+
     if (i == k - 1):
         a[i] = n - (sum(a) - a[i])
         AgregarDiv(a)
         return a[-1]
 
-    if (i == 0):
-        a = [1] * k
-
-    a[i] = 0
     b = 1
-    while (b >= a[i]):
+    while (b > a[i]):
         a[i] = a[i] +1
         b = Divisores(n,k, i+1, a)
 
@@ -38,12 +41,16 @@ def press(button):
         tam = app.getEntry("Tamano")
        	if ((num>10)|(num<0)):
        		app.updateListBox("list", ["Revisar numero",],select=False)
-       	elif ((tam>num)|(tam<0)):
+       	elif ((tam>num)):
        		app.updateListBox("list", ["Revisar tamano",],select=False)
        	else:
-        	Divisores(int(num),int(tam))
-        	app.updateListBox("list",div,select=False)
-        	del div[:]
+            if (tam == 0):
+                for i in range(int(num)):
+                    Divisores(int(num), i+1)
+            else:
+                Divisores(int(num),int(tam))
+        app.updateListBox("list",div,select=False)
+        del div[:]
 
 # create a GUI variable called app
 app = gui("Proyecto final", "400x400")
