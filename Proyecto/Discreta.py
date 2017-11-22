@@ -2,7 +2,13 @@
 from appJar import gui
 
 div = []
+ansFinal = []
 
+def AgregarMas(a):
+    for x in a :
+        for i in range(len(x)-1):
+            x[i] = str(x[i]) + "+"
+    return a
 
 def AgregarDiv(a):
     b = a[:]
@@ -49,7 +55,8 @@ def press(button):
                     Divisores(int(num), i+1)
             else:
                 Divisores(int(num),int(tam))
-        app.updateListBox("list",div,select=False)
+            ansFinal = AgregarMas(div)
+        app.updateListBox("list",ansFinal,select=False)
         del div[:]
 
 # create a GUI variable called app
