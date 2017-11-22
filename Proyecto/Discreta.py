@@ -1,22 +1,31 @@
 # import the library
 from appJar import gui
 
+#Varibles globales donde se guardan las combianaicones posibles de n
 div = []
 ansFinal = []
 
+
+#Al array div que contiene las combinaciones como simples números se le agrean signos mas entre cada numero y se guarda en el array ansFinal
 def AgregarMas(a):
     for x in a :
         for i in range(len(x)-1):
             x[i] = str(x[i]) + "+"
     return a
 
+
+#Método que recibe una posible combinación de n y revisa si esta combinación ya existe en div y que esta combinación no contenga 0 en alguna variable
 def AgregarDiv(a):
     b = a[:]
     b.sort()
     if (not b in div and not 0 in b):
         div.append(b)
 
-
+#Método Para encontrar los posibles Divisores de un numero n.
+#   n: número que se quiere encontrar las combinaciones
+#   k: cantidad de variables que componen n
+#   i: variable acutal en la que se encuentra el método
+#   a: array que contiene la combinación actualq que se esta construyendo
 def Divisores(n,k=0,i=0,a=[]):
     if (k == 0):
         k = n
