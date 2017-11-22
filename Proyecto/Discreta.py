@@ -43,6 +43,7 @@ def press(button):
     if button == "Salir":
         app.stop()
     else:
+        ansFinal = []
         num = app.getEntry("Numero")
         tam = app.getEntry("Tamano")
        	if ((num>10)|(num<0)):
@@ -56,8 +57,8 @@ def press(button):
             else:
                 Divisores(int(num),int(tam))
             ansFinal = AgregarMas(div)
-        app.updateListBox("list",ansFinal,select=False)
-        del div[:]
+            app.updateListBox("list",ansFinal,select=False)
+            del div[:]
 
 # create a GUI variable called app
 app = gui("Proyecto final", "400x400")
